@@ -23,7 +23,7 @@ class IReportVersionReq {
   final String? userId;
   final String deviceId;
   final String version;
-  final String oauthId;
+  final String appId;
   final int platformId;
   final int archId;
 
@@ -31,14 +31,14 @@ class IReportVersionReq {
     this.userId,
     required this.deviceId,
     required this.version,
-    required this.oauthId,
+    required this.appId,
     required this.platformId,
     required this.archId,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'oauthId': oauthId,
+      'appId': appId,
       'platformId': platformId,
       'archId': archId,
     };
@@ -60,7 +60,7 @@ class IGetLatestVersionReq {
   final String? userId;
   final String deviceId;
   final String version;
-  final String oauthId;
+  final String appId;
   final int platformId;
   final int archId;
 
@@ -68,14 +68,14 @@ class IGetLatestVersionReq {
     this.userId,
     required this.deviceId,
     required this.version,
-    required this.oauthId,
+    required this.appId,
     required this.platformId,
     required this.archId,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'oauthId': oauthId,
+      'appId': appId,
       'platformId': platformId,
       'archId': archId,
     };

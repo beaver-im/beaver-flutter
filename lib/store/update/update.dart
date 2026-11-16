@@ -84,7 +84,7 @@ class UpdateStore extends Cubit<UpdateStoreState> {
       userId: userId,
       deviceId: AppConfig.deviceId,
       version: currentVersion,
-      oauthId: AppConfig.updateAppId,
+      appId: AppConfig.updateAppId,
       platformId: platform.platformId,
       archId: platform.archId,
     ));
@@ -93,7 +93,7 @@ class UpdateStore extends Cubit<UpdateStoreState> {
       userId: userId,
       deviceId: AppConfig.deviceId,
       version: currentVersion,
-      oauthId: AppConfig.updateAppId,
+      appId: AppConfig.updateAppId,
       platformId: platform.platformId,
       archId: platform.archId,
     ));
