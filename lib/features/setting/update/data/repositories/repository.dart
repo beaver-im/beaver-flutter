@@ -40,7 +40,7 @@ class UpdateRepository {
     final response = await getLatestVersionApi(IGetLatestVersionReq(
       deviceId: AppConfig.deviceId,
       version: AppConfig.version,
-      appId: AppConfig.updateAppId,
+      oauthId: AppConfig.updateAppId,
       platformId: platform.platformId,
       archId: platform.archId,
     ));

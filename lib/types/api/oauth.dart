@@ -29,7 +29,7 @@ class IGetQrCodeSceneReq {
 
 class IGetQrCodeSceneRes {
   final String sceneId;
-  final String appId;
+  final String oauthId;
   final String appName;
   final String appIcon;
   final String status;
@@ -38,7 +38,7 @@ class IGetQrCodeSceneRes {
 
   IGetQrCodeSceneRes({
     required this.sceneId,
-    required this.appId,
+    required this.oauthId,
     required this.appName,
     required this.appIcon,
     required this.status,
@@ -49,7 +49,7 @@ class IGetQrCodeSceneRes {
   factory IGetQrCodeSceneRes.fromJson(Map<String, dynamic> json) {
     return IGetQrCodeSceneRes(
       sceneId: json['sceneId'] as String? ?? '',
-      appId: json['appId'] as String? ?? '',
+      oauthId: json['oauthId'] as String? ?? '',
       appName: json['appName'] as String? ?? '',
       appIcon: json['appIcon'] as String? ?? '',
       status: json['status'] as String? ?? 'waiting',
