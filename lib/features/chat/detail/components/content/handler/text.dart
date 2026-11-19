@@ -38,9 +38,6 @@ class TextHandler extends BaseMessageHandler {
       case 'recall':
         await recallMessage(context, message);
         break;
-      case 'edit':
-        startEditMessage(context, message);
-        break;
       case 'delete':
         await deleteMessage(context, message);
         break;
@@ -49,7 +46,7 @@ class TextHandler extends BaseMessageHandler {
 
   @override
   List<String> getSupportedCommands() {
-    return ['copy', 'reply', 'forward', 'multiSelect', 'edit', 'recall', 'delete'];
+    return ['copy', 'reply', 'forward', 'multiSelect', 'recall', 'delete'];
   }
 
   @override
@@ -62,9 +59,6 @@ class TextHandler extends BaseMessageHandler {
       BaseMessageHandler.deleteAction,
     ];
     if (message.isSent) {
-      if (canEditMessage(message)) {
-        items.insert(items.length - 1, BaseMessageHandler.editAction);
-      }
       items.insert(items.length - 1, BaseMessageHandler.recallAction);
     }
     return items;

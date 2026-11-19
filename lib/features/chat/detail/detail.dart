@@ -124,7 +124,6 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   isVoiceMode: state.isVoiceMode,
                   isSending: state.isSending,
                   isMultiSelect: isMultiSelect,
-                  editingMessage: state.editingMessage,
                   replyingMessage: state.replyingMessage,
                 ),
               ],

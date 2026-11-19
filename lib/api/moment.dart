@@ -25,7 +25,7 @@ import 'package:beaver/common/config/env.dart';
 
 /// 创建朋友圈
 Future<BaseResponse<ICreateMomentRes>> createMomentApi(ICreateMomentReq data) {
-  final url = '$baseUrl/api/moment/v1/create';
+  final url = '$baseUrl/beaver-social/api/moment/feed/v1/create';
   return httpClient.post<ICreateMomentRes>(
     url,
     data: data.toJson(),
@@ -35,7 +35,7 @@ Future<BaseResponse<ICreateMomentRes>> createMomentApi(ICreateMomentReq data) {
 
 /// 获取朋友圈列表
 Future<BaseResponse<IGetMomentListRes>> getMomentListApi(IGetMomentListReq data) {
-  final url = '$baseUrl/api/moment/v1/list';
+  final url = '$baseUrl/beaver-social/api/moment/feed/v1/list';
   return httpClient.post<IGetMomentListRes>(
     url,
     data: data.toJson(),
@@ -45,7 +45,7 @@ Future<BaseResponse<IGetMomentListRes>> getMomentListApi(IGetMomentListReq data)
 
 /// 点赞朋友圈
 Future<BaseResponse<ILikeMomentRes>> likeMomentApi(ILikeMomentReq data) {
-  final url = '$baseUrl/api/moment/v1/like';
+  final url = '$baseUrl/beaver-social/api/moment/like/v1/set';
   return httpClient.post<ILikeMomentRes>(
     url,
     data: data.toJson(),
@@ -55,7 +55,7 @@ Future<BaseResponse<ILikeMomentRes>> likeMomentApi(ILikeMomentReq data) {
 
 /// 发表评论
 Future<BaseResponse<ICreateMomentCommentRes>> createMomentCommentApi(ICreateMomentCommentReq data) {
-  final url = '$baseUrl/api/moment/v1/comment/create';
+  final url = '$baseUrl/beaver-social/api/moment/comment/v1/create';
   return httpClient.post<ICreateMomentCommentRes>(
     url,
     data: data.toJson(),
@@ -65,7 +65,7 @@ Future<BaseResponse<ICreateMomentCommentRes>> createMomentCommentApi(ICreateMome
 
 /// 获取动态详情
 Future<BaseResponse<IGetMomentDetailRes>> getMomentDetailApi(IGetMomentDetailReq data) {
-  final url = '$baseUrl/api/moment/v1/detail';
+  final url = '$baseUrl/beaver-social/api/moment/feed/v1/detail';
   return httpClient.post<IGetMomentDetailRes>(
     url,
     data: data.toJson(),
@@ -75,7 +75,7 @@ Future<BaseResponse<IGetMomentDetailRes>> getMomentDetailApi(IGetMomentDetailReq
 
 /// 删除朋友圈
 Future<BaseResponse<void>> deleteMomentApi(IDeleteMomentReq data) {
-  final url = '$baseUrl/api/moment/v1/delete';
+  final url = '$baseUrl/beaver-social/api/moment/feed/v1/delete';
   return httpClient.get<void>(
     url,
     queryParameters: data.toJson(),
@@ -84,7 +84,7 @@ Future<BaseResponse<void>> deleteMomentApi(IDeleteMomentReq data) {
 
 /// 获取动态评论列表
 Future<BaseResponse<IGetMomentCommentsRes>> getMomentCommentsApi(IGetMomentCommentsReq data) {
-  final url = '$baseUrl/api/moment/v1/comments';
+  final url = '$baseUrl/beaver-social/api/moment/comment/v1/list';
   return httpClient.post<IGetMomentCommentsRes>(
     url,
     data: data.toJson(),
@@ -94,7 +94,7 @@ Future<BaseResponse<IGetMomentCommentsRes>> getMomentCommentsApi(IGetMomentComme
 
 /// 获取动态点赞列表
 Future<BaseResponse<IGetMomentLikesRes>> getMomentLikesApi(IGetMomentLikesReq data) {
-  final url = '$baseUrl/api/moment/v1/likes';
+  final url = '$baseUrl/beaver-social/api/moment/like/v1/list';
   return httpClient.post<IGetMomentLikesRes>(
     url,
     data: data.toJson(),

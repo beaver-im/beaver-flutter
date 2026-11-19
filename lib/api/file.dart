@@ -40,12 +40,12 @@ Future<BaseResponse<IFileUploadResult>> uploadFileApi(String filePath) async {
 
 /// 上传到本地 (对应 PC uploadToLocalApi)
 Future<BaseResponse<IFileUploadResult>> uploadLocalApi(String filePath) async {
-  return _uploadFileApiWithTarget(filePath, 'uploadLocal');
+  return _uploadFileApiWithTarget(filePath, 'upload_local');
 }
 
 /// 上传到七牛 (对应 PC uploadQiniuApi)
 Future<BaseResponse<IFileUploadResult>> uploadQiniuApi(String filePath) async {
-  return _uploadFileApiWithTarget(filePath, 'uploadQiniu');
+  return _uploadFileApiWithTarget(filePath, 'upload_qiniu');
 }
 
 /// 内部通用上传逻辑
@@ -53,7 +53,7 @@ Future<BaseResponse<IFileUploadResult>> _uploadFileApiWithTarget(
   String filePath,
   String endpoint,
 ) async {
-  final uploadUrl = '$baseUrl/api/file/v1/$endpoint';
+  final uploadUrl = '$baseUrl/beaver/api/asset/file/v1/$endpoint';
 
   _logger.info({
     'text': '开始上传文件',

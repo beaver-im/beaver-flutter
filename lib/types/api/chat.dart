@@ -368,39 +368,6 @@ class IForwardMessageRes {
       IForwardMessageRes(messageId: json['messageId']);
 }
 
-/// 编辑消息请求
-class IEditMessageReq {
-  final String messageId;
-  final String content;
-
-  IEditMessageReq({required this.messageId, required this.content});
-
-  Map<String, dynamic> toJson() => {'messageId': messageId, 'content': content};
-}
-
-/// 编辑消息响应
-class IEditMessageRes {
-  final int id;
-  final String messageId;
-  final String content;
-  final String editTime;
-
-  IEditMessageRes({
-    required this.id,
-    required this.messageId,
-    required this.content,
-    required this.editTime,
-  });
-
-  factory IEditMessageRes.fromJson(Map<String, dynamic> json) =>
-      IEditMessageRes(
-        id: json['id'] ?? 0,
-        messageId: json['messageId'] ?? '',
-        content: json['content'] ?? '',
-        editTime: json['editTime'] ?? '',
-      );
-}
-
 /// 撤回消息请求
 class IRecallMessageReq {
   final String messageId;

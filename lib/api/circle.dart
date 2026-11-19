@@ -26,7 +26,7 @@ import 'package:beaver/types/api/circle.dart';
 Future<BaseResponse<IGetMyCircleListRes>> getMyCircleListApi(
   IGetMyCircleListReq data,
 ) {
-  final url = '$baseUrl/api/circle/v1/circle/mine';
+  final url = '$baseUrl/beaver-social/api/circle/circle/v1/mine';
   return httpClient.get<IGetMyCircleListRes>(
     url,
     queryParameters: data.toJson(),
@@ -35,7 +35,7 @@ Future<BaseResponse<IGetMyCircleListRes>> getMyCircleListApi(
 }
 
 Future<BaseResponse<ICreateCircleRes>> createCircleApi(ICreateCircleReq data) {
-  final url = '$baseUrl/api/circle/v1/circle/create';
+  final url = '$baseUrl/beaver-social/api/circle/circle/v1/create';
   return httpClient.post<ICreateCircleRes>(
     url,
     data: data.toJson(),
@@ -45,7 +45,7 @@ Future<BaseResponse<ICreateCircleRes>> createCircleApi(ICreateCircleReq data) {
 
 /// 圈子资料增量同步
 Future<BaseResponse<ICircleSyncRes>> circleSyncApi(ICircleSyncReq data) {
-  final url = '$baseUrl/api/circle/v1/circle/sync';
+  final url = '$baseUrl/beaver-social/api/circle/circle/v1/sync';
   return httpClient.post<ICircleSyncRes>(
     url,
     data: data.toJson(),
@@ -56,7 +56,7 @@ Future<BaseResponse<ICircleSyncRes>> circleSyncApi(ICircleSyncReq data) {
 Future<BaseResponse<IGetCircleDetailRes>> getCircleDetailApi(
   IGetCircleDetailReq data,
 ) {
-  final url = '$baseUrl/api/circle/v1/circle/detail';
+  final url = '$baseUrl/beaver-social/api/circle/circle/v1/detail';
   return httpClient.get<IGetCircleDetailRes>(
     url,
     queryParameters: data.toJson(),
@@ -65,7 +65,7 @@ Future<BaseResponse<IGetCircleDetailRes>> getCircleDetailApi(
 }
 
 Future<BaseResponse<IJoinCircleRes>> joinCircleApi(IJoinCircleReq data) {
-  final url = '$baseUrl/api/circle/v1/circle/join';
+  final url = '$baseUrl/beaver-social/api/circle/circle/v1/join';
   return httpClient.post<IJoinCircleRes>(
     url,
     data: data.toJson(),
@@ -74,7 +74,7 @@ Future<BaseResponse<IJoinCircleRes>> joinCircleApi(IJoinCircleReq data) {
 }
 
 Future<BaseResponse<IGetPostListRes>> getPostListApi(IGetPostListReq data) {
-  final url = '$baseUrl/api/circle/v1/post/list';
+  final url = '$baseUrl/beaver-social/api/post/post/v1/list';
   return httpClient.get<IGetPostListRes>(
     url,
     queryParameters: data.toJson(),
@@ -85,7 +85,7 @@ Future<BaseResponse<IGetPostListRes>> getPostListApi(IGetPostListReq data) {
 Future<BaseResponse<IGetPostDetailRes>> getPostDetailApi(
   IGetPostDetailReq data,
 ) {
-  final url = '$baseUrl/api/circle/v1/post/detail';
+  final url = '$baseUrl/beaver-social/api/post/post/v1/detail';
   return httpClient.get<IGetPostDetailRes>(
     url,
     queryParameters: data.toJson(),
@@ -94,7 +94,7 @@ Future<BaseResponse<IGetPostDetailRes>> getPostDetailApi(
 }
 
 Future<BaseResponse<ICreatePostRes>> createPostApi(ICreatePostReq data) {
-  final url = '$baseUrl/api/circle/v1/post/create';
+  final url = '$baseUrl/beaver-social/api/post/post/v1/create';
   return httpClient.post<ICreatePostRes>(
     url,
     data: data.toJson(),
@@ -103,7 +103,7 @@ Future<BaseResponse<ICreatePostRes>> createPostApi(ICreatePostReq data) {
 }
 
 Future<BaseResponse<ILikePostRes>> likePostApi(ILikePostReq data) {
-  final url = '$baseUrl/api/circle/v1/post/like';
+  final url = '$baseUrl/beaver-social/api/post/post/v1/like';
   return httpClient.post<ILikePostRes>(
     url,
     data: data.toJson(),
@@ -116,7 +116,7 @@ Future<BaseResponse<ILikePostRes>> likePostApi(ILikePostReq data) {
 Future<BaseResponse<ICreateCircleCommentRes>> createCircleCommentApi(
   ICreateCircleCommentReq data,
 ) {
-  final url = '$baseUrl/api/circle/v1/comment/create';
+  final url = '$baseUrl/beaver-social/api/comment/comment/v1/create';
   return httpClient.post<ICreateCircleCommentRes>(
     url,
     data: data.toJson(),
@@ -127,7 +127,7 @@ Future<BaseResponse<ICreateCircleCommentRes>> createCircleCommentApi(
 Future<BaseResponse<IGetCircleCommentListRes>> getCircleCommentListApi(
   IGetCircleCommentListReq data,
 ) {
-  final url = '$baseUrl/api/circle/v1/comment/list';
+  final url = '$baseUrl/beaver-social/api/comment/comment/v1/list';
   return httpClient.get<IGetCircleCommentListRes>(
     url,
     queryParameters: data.toJson(),
@@ -138,7 +138,7 @@ Future<BaseResponse<IGetCircleCommentListRes>> getCircleCommentListApi(
 Future<BaseResponse<IDeleteCircleCommentRes>> deleteCircleCommentApi(
   IDeleteCircleCommentReq data,
 ) {
-  final url = '$baseUrl/api/circle/v1/comment/delete';
+  final url = '$baseUrl/beaver-social/api/comment/comment/v1/delete';
   return httpClient.get<IDeleteCircleCommentRes>(
     url,
     queryParameters: data.toJson(),
@@ -152,7 +152,7 @@ Future<BaseResponse<IDeleteCircleCommentRes>> deleteCircleCommentApi(
 Future<BaseResponse<IResolveCircleInviteRes>> resolveCircleInviteApi(
   IResolveCircleInviteReq data,
 ) {
-  final url = '$baseUrl/api/circle/v1/circle/invite_code';
+  final url = '$baseUrl/beaver-social/api/circle/circle/v1/invite_code';
   return httpClient.get<IResolveCircleInviteRes>(
     url,
     queryParameters: data.toJson(),
@@ -164,7 +164,7 @@ Future<BaseResponse<IResolveCircleInviteRes>> resolveCircleInviteApi(
 Future<BaseResponse<IGetCircleMembersRes>> getCircleMembersApi(
   IGetCircleMembersReq data,
 ) {
-  final url = '$baseUrl/api/circle/v1/circle/members';
+  final url = '$baseUrl/beaver-social/api/circle/circle/v1/members';
   return httpClient.get<IGetCircleMembersRes>(
     url,
     queryParameters: data.toJson(),
@@ -176,7 +176,7 @@ Future<BaseResponse<IGetCircleMembersRes>> getCircleMembersApi(
 Future<BaseResponse<IInviteCircleMembersRes>> inviteCircleMembersApi(
   IInviteCircleMembersReq data,
 ) {
-  final url = '$baseUrl/api/circle/v1/circle/invite';
+  final url = '$baseUrl/beaver-social/api/circle/circle/v1/invite';
   return httpClient.post<IInviteCircleMembersRes>(
     url,
     data: data.toJson(),
@@ -190,7 +190,7 @@ Future<BaseResponse<IInviteCircleMembersRes>> inviteCircleMembersApi(
 Future<BaseResponse<IRemoveCircleMembersRes>> removeCircleMembersApi(
   IRemoveCircleMembersReq data,
 ) {
-  final url = '$baseUrl/api/circle/v1/circle/member_remove';
+  final url = '$baseUrl/beaver-social/api/circle/circle/v1/member_remove';
   return httpClient.post<IRemoveCircleMembersRes>(
     url,
     data: data.toJson(),
@@ -202,7 +202,7 @@ Future<BaseResponse<IRemoveCircleMembersRes>> removeCircleMembersApi(
 
 /// 退出圈子
 Future<BaseResponse<IQuitCircleRes>> quitCircleApi(IQuitCircleReq data) {
-  final url = '$baseUrl/api/circle/v1/circle/quit';
+  final url = '$baseUrl/beaver-social/api/circle/circle/v1/quit';
   return httpClient.post<IQuitCircleRes>(
     url,
     data: data.toJson(),
@@ -214,7 +214,7 @@ Future<BaseResponse<IQuitCircleRes>> quitCircleApi(IQuitCircleReq data) {
 
 /// 解散圈子（圈主）
 Future<BaseResponse<IDeleteCircleRes>> deleteCircleApi(IDeleteCircleReq data) {
-  final url = '$baseUrl/api/circle/v1/circle/delete';
+  final url = '$baseUrl/beaver-social/api/circle/circle/v1/delete';
   return httpClient.get<IDeleteCircleRes>(
     url,
     queryParameters: data.toJson(),

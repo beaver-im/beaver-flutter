@@ -27,7 +27,7 @@ import 'package:beaver/common/config/env.dart';
 Future<BaseResponse<IGetFriendsListByIdsRes>> getFriendsListByIdsApi(
   IGetFriendsListByIdsReq data,
 ) {
-  final url = '$baseUrl/api/friend/v1/getFriendsListByIds';
+  final url = '$baseUrl/beaver/api/relation/friend/v1/get_friends_list_by_ids';
   return httpClient.post<IGetFriendsListByIdsRes>(
     url,
     data: data.toJson(),
@@ -38,7 +38,7 @@ Future<BaseResponse<IGetFriendsListByIdsRes>> getFriendsListByIdsApi(
 /// 批量获取好友验证数据
 Future<BaseResponse<IGetFriendVerifiesListByIdsRes>>
 getFriendVerifiesListByIdsApi(IGetFriendVerifiesListByIdsReq data) {
-  final url = '$baseUrl/api/friend/v1/getFriendVerifiesListByIds';
+  final url = '$baseUrl/beaver/api/relation/friend/v1/get_friend_verifies_list_by_ids';
   return httpClient.post<IGetFriendVerifiesListByIdsRes>(
     url,
     data: data.toJson(),
@@ -50,7 +50,7 @@ getFriendVerifiesListByIdsApi(IGetFriendVerifiesListByIdsReq data) {
 Future<BaseResponse<IResSearchUserInfo>> getSearchFriendApi(
   ISearchUserReq data,
 ) {
-  final url = '$baseUrl/api/friend/v1/search';
+  final url = '$baseUrl/beaver/api/relation/friend/v1/search';
   return httpClient.get<IResSearchUserInfo>(
     url,
     queryParameters: data.toJson(),
@@ -60,13 +60,13 @@ Future<BaseResponse<IResSearchUserInfo>> getSearchFriendApi(
 
 /// 申请添加好友 (对标 Desktop applyAddFriendApi)
 Future<BaseResponse<void>> applyAddFriendApi(IAddFriendReq data) {
-  final url = '$baseUrl/api/friend/v1/add_friend';
+  final url = '$baseUrl/beaver/api/relation/friend/v1/add_friend';
   return httpClient.post<void>(url, data: data.toJson());
 }
 
 /// 验证好友申请 (对标 Desktop valiFrienddAPi)
 Future<BaseResponse<void>> valiFriendApi(IValiFriendReq data) {
-  final url = '$baseUrl/api/friend/v1/valid';
+  final url = '$baseUrl/beaver/api/relation/friend/v1/valid';
   return httpClient.post<void>(url, data: data.toJson());
 }
 
@@ -74,7 +74,7 @@ Future<BaseResponse<void>> valiFriendApi(IValiFriendReq data) {
 Future<BaseResponse<INoticeUpdateRes>> updateRemarkNameApi(
   INoticeUpdateReq data,
 ) {
-  final url = '$baseUrl/api/friend/v1/update_notice';
+  final url = '$baseUrl/beaver/api/relation/friend/v1/update_notice';
   return httpClient.post<INoticeUpdateRes>(
     url,
     data: data.toJson(),

@@ -25,7 +25,7 @@ import 'package:beaver/common/config/env.dart';
 
 /// 手机号登录
 Future<BaseResponse<PhoneLoginRes>> phoneLoginApi(PhoneLoginReq data) {
-  final url = '$baseUrl/api/auth/auth_public/v1/phone_login';
+  final url = '$baseUrl/beaver/api/account/auth_public/v1/phone_login';
   return httpClient.post<PhoneLoginRes>(
     url,
     data: data.toJson(),
@@ -37,7 +37,7 @@ Future<BaseResponse<PhoneLoginRes>> phoneLoginApi(PhoneLoginReq data) {
 Future<BaseResponse<EmailPasswordLoginRes>> emailPasswordLoginApi(
   EmailPasswordLoginReq data,
 ) {
-  final url = '$baseUrl/api/auth/auth_public/v1/email_password_login';
+  final url = '$baseUrl/beaver/api/account/auth_public/v1/email_password_login';
   return httpClient.post<EmailPasswordLoginRes>(
     url,
     data: data.toJson(),
@@ -47,7 +47,7 @@ Future<BaseResponse<EmailPasswordLoginRes>> emailPasswordLoginApi(
 
 /// 认证检查
 Future<BaseResponse<AuthenticationRes>> authenticationApi() {
-  final url = '$baseUrl/api/auth/auth_public/v1/authentication';
+  final url = '$baseUrl/beaver/api/account/auth_public/v1/authentication';
   return httpClient.get<AuthenticationRes>(
     url,
     fromJsonT: (json) => AuthenticationRes.fromJson(json),
@@ -56,7 +56,7 @@ Future<BaseResponse<AuthenticationRes>> authenticationApi() {
 
 /// 获取邮箱验证码
 Future<BaseResponse<GetEmailCodeRes>> getEmailCodeApi(GetEmailCodeReq data) {
-  final url = '$baseUrl/api/auth/auth_public/v1/emailcode';
+  final url = '$baseUrl/beaver/api/account/auth_public/v1/emailcode';
   return httpClient.post<GetEmailCodeRes>(
     url,
     data: data.toJson(),
@@ -66,7 +66,7 @@ Future<BaseResponse<GetEmailCodeRes>> getEmailCodeApi(GetEmailCodeReq data) {
 
 /// 邮箱注册
 Future<BaseResponse<EmailRegisterRes>> emailRegisterApi(EmailRegisterReq data) {
-  final url = '$baseUrl/api/auth/auth_public/v1/email_register';
+  final url = '$baseUrl/beaver/api/account/auth_public/v1/email_register';
   return httpClient.post<EmailRegisterRes>(
     url,
     data: data.toJson(),
@@ -76,7 +76,7 @@ Future<BaseResponse<EmailRegisterRes>> emailRegisterApi(EmailRegisterReq data) {
 
 /// 登出
 Future<BaseResponse<LogoutRes>> logoutApi() {
-  final url = '$baseUrl/api/auth/auth/v1/logout';
+  final url = '$baseUrl/beaver/api/account/auth/v1/logout';
   return httpClient.post<LogoutRes>(
     url,
     data: LogoutReq().toJson(),
@@ -86,7 +86,7 @@ Future<BaseResponse<LogoutRes>> logoutApi() {
 
 /// 重置密码
 Future<BaseResponse<ResetPasswordRes>> resetPasswordApi(ResetPasswordReq data) {
-  final url = '$baseUrl/api/auth/auth_public/v1/reset_password';
+  final url = '$baseUrl/beaver/api/account/auth_public/v1/reset_password';
   return httpClient.post<ResetPasswordRes>(
     url,
     data: data.toJson(),
@@ -98,7 +98,7 @@ Future<BaseResponse<ResetPasswordRes>> resetPasswordApi(ResetPasswordReq data) {
 Future<BaseResponse<UpdatePasswordRes>> updatePasswordApi(
   UpdatePasswordReq data,
 ) {
-  final url = '$baseUrl/api/auth/auth/v1/update_password';
+  final url = '$baseUrl/beaver/api/account/auth/v1/update_password';
   return httpClient.post<UpdatePasswordRes>(
     url,
     data: data.toJson(),
@@ -108,7 +108,7 @@ Future<BaseResponse<UpdatePasswordRes>> updatePasswordApi(
 
 /// 获取登录设备列表
 Future<BaseResponse<GetDevicesRes>> getDevicesApi() {
-  final url = '$baseUrl/api/auth/auth/v1/devices';
+  final url = '$baseUrl/beaver/api/account/auth/v1/devices';
   return httpClient.get<GetDevicesRes>(
     url,
     fromJsonT: (json) => GetDevicesRes.fromJson(json),
@@ -117,7 +117,7 @@ Future<BaseResponse<GetDevicesRes>> getDevicesApi() {
 
 /// 踢下线指定设备
 Future<BaseResponse<KickDeviceRes>> kickDeviceApi(KickDeviceReq data) {
-  final url = '$baseUrl/api/auth/auth/v1/kick_device';
+  final url = '$baseUrl/beaver/api/account/auth/v1/kick_device';
   return httpClient.post<KickDeviceRes>(
     url,
     data: data.toJson(),

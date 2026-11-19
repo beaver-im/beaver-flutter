@@ -27,7 +27,7 @@ import 'package:beaver/types/api/workbench.dart';
 Future<BaseResponse<IListWorkbenchAppsRes>> listWorkbenchAppsApi([
   IListWorkbenchAppsReq? data,
 ]) {
-  final url = '$baseUrl/api/platform/v1/list_workbench';
+  final url = '$baseUrl/beaver/api/platform/workbench/v1/list_workbench';
   return httpClient.get<IListWorkbenchAppsRes>(
     url,
     queryParameters: data?.toJson(),

@@ -38,10 +38,13 @@ import 'package:beaver/common/ua/http_adapter.dart';
 final _logger = Logger('app');
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  // 6. 异步任务未捕获异常兜底（异步回调中抛出的异常走此通道）
+  // binding 初始化与 runApp 必须在同一个 zone，否则 Flutter 3.13+ 报 Zone mismatch
+  runZonedGuarded<void>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
 
-  // 1. 初始化日志
-  await Logger.init();
+    // 1. 初始化日志
+    await Logger.init();
   _logger.info({'text': '应用启动：日志模块已就绪'});
 
   // 2. 全局异常兜底（对标 PC main.ts 的 uncaughtException / unhandledRejection）
@@ -107,18 +110,16 @@ void main() async {
     getIt<AppStore>().initApp();
   }
 
-  // 6. 异步任务未捕获异常兜底（异步回调中抛出的异常走此通道）
-  runZonedGuarded<void>(() {
-    _logger.info({'text': '启动步骤：进入应用主界面'});
-    runApp(const BeaverApp());
-  }, (error, stack) {
-    _logger.error({
-      'text': '异步任务未捕获异常',
-      'data': {
-        'error': error.toString(),
-        'stack': stack.toString(),
-      },
-    });
+  _logger.info({'text': '启动步骤：进入应用主界面'});
+  runApp(const BeaverApp());
+}, (error, stack) {
+  _logger.error({
+    'text': '异步任务未捕获异常',
+    'data': {
+      'error': error.toString(),
+      'stack': stack.toString(),
+    },
   });
+});
 }
 

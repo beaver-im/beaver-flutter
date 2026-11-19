@@ -22,8 +22,8 @@
 /// 邀请链接解析（对齐 PC / 服务端 inviteUrl）
 ///
 /// 正式链接形如：
-/// - `{Domain}/api/circle/v1/circle/invite_code?code=xxx`
-/// - `{Domain}/api/group/v1/invite_code?code=xxx`
+/// - `{Domain}/beaver-social/api/circle/circle/v1/invite_code?code=xxx`
+/// - `{Domain}/beaver/api/relation/group/v1/invite_code?code=xxx`
 
 enum InviteKind { circle, group }
 
@@ -65,7 +65,7 @@ InviteRef? parseInviteRef(String raw) {
         return InviteRef(kind: InviteKind.circle, code: code);
       }
       if ((path.contains('/group/') && path.contains('invite_code')) ||
-          RegExp(r'/api/group/v1/invite_code', caseSensitive: false)
+          RegExp(r'/beaver/api/relation/group/v1/invite_code', caseSensitive: false)
               .hasMatch(path)) {
         return InviteRef(kind: InviteKind.group, code: code);
       }
@@ -82,7 +82,7 @@ InviteRef? parseInviteRef(String raw) {
   }
 
   final circle = RegExp(
-    r'/api/circle/v1/circle/invite_code\?[^#]*code=([^&#]+)',
+    r'/beaver-social/api/circle/circle/v1/invite_code\?[^#]*code=([^&#]+)',
     caseSensitive: false,
   ).firstMatch(value);
   if (circle != null) {
@@ -93,7 +93,7 @@ InviteRef? parseInviteRef(String raw) {
   }
 
   final group = RegExp(
-    r'/api/group/v1/invite_code\?[^#]*code=([^&#]+)',
+    r'/beaver/api/relation/group/v1/invite_code\?[^#]*code=([^&#]+)',
     caseSensitive: false,
   ).firstMatch(value);
   if (group != null) {

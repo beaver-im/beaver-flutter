@@ -26,7 +26,7 @@ import 'package:beaver/types/api/agent.dart';
 /// 发消息给 Agent。HTTP 只返回 accepted，增量经 IM WebSocket 推送。
 Future<BaseResponse<ListAgentConversationsRes>> listAgentConversationsApi() {
   return httpClient.post<ListAgentConversationsRes>(
-    '$baseUrl/api/agent/v1/sync/listConversations',
+    '$baseUrl/beaver-ai/api/ai/sync/v1/list_conversations',
     data: {'since': 0, 'limit': 100},
     fromJsonT: (json) => ListAgentConversationsRes.fromJson(Map<String, dynamic>.from(json as Map)),
   );
@@ -34,7 +34,7 @@ Future<BaseResponse<ListAgentConversationsRes>> listAgentConversationsApi() {
 
 Future<BaseResponse<ListAgentMessagesRes>> listAgentMessagesApi(String topicId) {
   return httpClient.post<ListAgentMessagesRes>(
-    '$baseUrl/api/agent/v1/message/listMessages',
+    '$baseUrl/beaver-ai/api/ai/message/v1/list_messages',
     data: {'topicId': topicId, 'limit': 100},
     fromJsonT: (json) => ListAgentMessagesRes.fromJson(Map<String, dynamic>.from(json as Map)),
   );
@@ -42,7 +42,7 @@ Future<BaseResponse<ListAgentMessagesRes>> listAgentMessagesApi(String topicId) 
 
 Future<BaseResponse<SendAgentMessageRes>> sendAgentMessageApi(SendAgentMessageReq data) {
   return httpClient.post<SendAgentMessageRes>(
-    '$baseUrl/api/agent/v1/message/sendMessage',
+    '$baseUrl/beaver-ai/api/ai/message/v1/send_message',
     data: data.toJson(),
     fromJsonT: (json) => SendAgentMessageRes.fromJson(Map<String, dynamic>.from(json as Map)),
   );
@@ -51,7 +51,7 @@ Future<BaseResponse<SendAgentMessageRes>> sendAgentMessageApi(SendAgentMessageRe
 /// 列某会话下的话题（分支）；用于本地无 topicId 时补齐当前话题。
 Future<BaseResponse<ListAgentTopicsRes>> listAgentTopicsApi(String conversationId) {
   return httpClient.post<ListAgentTopicsRes>(
-    '$baseUrl/api/agent/v1/sync/listTopics',
+    '$baseUrl/beaver-ai/api/ai/sync/v1/list_topics',
     data: {'conversationId': conversationId},
     fromJsonT: (json) => ListAgentTopicsRes.fromJson(Map<String, dynamic>.from(json as Map)),
   );
@@ -60,7 +60,7 @@ Future<BaseResponse<ListAgentTopicsRes>> listAgentTopicsApi(String conversationI
 /// 列官方 + 自定义模型（一次返回两组）。模型目录由外部 ai 服务提供，桌面同网关已验证，这里镜像其调用。
 Future<BaseResponse<ListAgentModelsRes>> listAgentModelsApi() {
   return httpClient.post<ListAgentModelsRes>(
-    '$baseUrl/api/agent/v1/model/listModels',
+    '$baseUrl/beaver-ai/api/ai/model/v1/list_models',
     data: {},
     fromJsonT: (json) => ListAgentModelsRes.fromJson(Map<String, dynamic>.from(json as Map)),
   );

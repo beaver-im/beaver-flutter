@@ -27,7 +27,7 @@ import 'package:beaver/common/config/env.dart';
 Future<BaseResponse<dynamic>> getEmojisByIdsApi(
   Map<String, dynamic> data,
 ) async {
-  return httpClient.post('$baseUrl/api/emoji/v1/getEmojisByUuids', data: data);
+  return httpClient.post('$baseUrl/beaver/api/asset/emoji/v1/get_emojis_by_uuids', data: data);
 }
 
 // 获取表情收藏列表（通过ID列表）
@@ -35,7 +35,7 @@ Future<BaseResponse<EmojiCollectsResponse>> getEmojiCollectsByIdsApi(
   Map<String, dynamic> data,
 ) async {
   return httpClient.post<EmojiCollectsResponse>(
-    '$baseUrl/api/emoji/v1/collects-by-ids',
+    '$baseUrl/beaver/api/asset/emoji/v1/collects_by_ids',
     data: data,
     fromJsonT: (json) => EmojiCollectsResponse(
       collects: (json['collects'] as List)
@@ -49,7 +49,7 @@ Future<BaseResponse<EmojiCollectsResponse>> getEmojiCollectsByIdsApi(
 Future<BaseResponse<EmojiPackageCollectsResponse>>
 getEmojiPackageCollectsByIdsApi(Map<String, dynamic> data) async {
   return httpClient.post<EmojiPackageCollectsResponse>(
-    '$baseUrl/api/emoji/v1/package-collects-by-ids',
+    '$baseUrl/beaver/api/asset/emoji/v1/package_collects_by_ids',
     data: data,
     fromJsonT: (json) => EmojiPackageCollectsResponse(
       collects: (json['collects'] as List)
@@ -64,7 +64,7 @@ Future<BaseResponse<EmojiPackagesResponse>> getEmojiPackagesByIdsApi(
   Map<String, dynamic> data,
 ) async {
   return httpClient.post<EmojiPackagesResponse>(
-    '$baseUrl/api/emoji/v1/packages-by-ids',
+    '$baseUrl/beaver/api/asset/emoji/v1/packages_by_ids',
     data: data,
     fromJsonT: (json) => EmojiPackagesResponse(
       packages: (json['packages'] as List)
@@ -78,7 +78,7 @@ Future<BaseResponse<EmojiPackagesResponse>> getEmojiPackagesByIdsApi(
 Future<BaseResponse<EmojiPackageContentsResponse>>
 getEmojiPackageContentsByPackageIdsApi(Map<String, dynamic> data) async {
   return httpClient.post<EmojiPackageContentsResponse>(
-    '$baseUrl/api/emoji/v1/package-contents-by-package-ids',
+    '$baseUrl/beaver/api/asset/emoji/v1/package_contents_by_package_ids',
     data: data,
     fromJsonT: (json) => EmojiPackageContentsResponse(
       contents: (json['contents'] as List)
@@ -92,7 +92,7 @@ getEmojiPackageContentsByPackageIdsApi(Map<String, dynamic> data) async {
 Future<BaseResponse<EmojiPackageContentsResponse>>
 getEmojiPackageContentsByRelationIdsApi(Map<String, dynamic> data) async {
   return httpClient.post<EmojiPackageContentsResponse>(
-    '$baseUrl/api/emoji/v1/package-contents-by-relation-ids',
+    '$baseUrl/beaver/api/asset/emoji/v1/package_contents_by_relation_ids',
     data: data,
     fromJsonT: (json) => EmojiPackageContentsResponse(
       contents: (json['contents'] as List)
@@ -106,7 +106,7 @@ Future<BaseResponse<EmojiShopPackagesResponse>> getEmojiPackagesApi(
   Map<String, dynamic> data,
 ) async {
   return httpClient.post<EmojiShopPackagesResponse>(
-    '$baseUrl/api/emoji/v1/packageList',
+    '$baseUrl/beaver/api/asset/emoji/v1/package_list',
     data: data,
     fromJsonT: (json) => EmojiShopPackagesResponse(
       count: json['count'] ?? 0,
@@ -122,7 +122,7 @@ Future<BaseResponse<EmojiPackageDetailResponse>> getEmojiPackageDetailApi(
   Map<String, dynamic> data,
 ) async {
   return httpClient.post<EmojiPackageDetailResponse>(
-    '$baseUrl/api/emoji/v1/packageInfo',
+    '$baseUrl/beaver/api/asset/emoji/v1/package_info',
     data: data,
     fromJsonT: (json) => EmojiPackageDetailResponse.fromJson(json),
   );
@@ -132,10 +132,10 @@ Future<BaseResponse<EmojiPackageDetailResponse>> getEmojiPackageDetailApi(
 Future<BaseResponse<dynamic>> updateFavoriteEmojiPackageApi(
   Map<String, dynamic> data,
 ) async {
-  return httpClient.post('$baseUrl/api/emoji/v1/packageFavorite', data: data);
+  return httpClient.post('$baseUrl/beaver/api/asset/emoji/v1/package_favorite', data: data);
 }
 
 // 添加表情并自动收藏
 Future<BaseResponse<dynamic>> addEmojiApi(Map<String, dynamic> data) async {
-  return httpClient.post('$baseUrl/api/emoji/v1/add', data: data);
+  return httpClient.post('$baseUrl/beaver/api/asset/emoji/v1/add', data: data);
 }

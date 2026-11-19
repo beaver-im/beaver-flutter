@@ -47,7 +47,7 @@ class Logger {
 
   // ---- 云端上报相关 ----
   // 独立实例：刻意不走 HttpClient 拦截器，避免日志请求再次触发 Logger 造成递归上报
-  static const String _cloudPath = '/api/platform/track_public/v1/track';
+  static const String _cloudPath = '/beaver/api/platform/track_public/v1/track';
   static Dio? _cloudDio;
   static bool _cloudEnabled = false;
   static String? _userId; // 登录成功后由业务层注入

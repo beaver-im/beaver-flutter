@@ -19,7 +19,7 @@ dependencies:
   # 网络与实时通信
   dio: ^5.9.2
   web_socket_channel: ^3.0.3
-  livekit_client: ^2.6.5
+  livekit_client: ^2.14.0
   crypto: ^3.0.6
 
   # 本地数据与路径

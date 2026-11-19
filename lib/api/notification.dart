@@ -28,7 +28,7 @@ Future<BaseResponse<IGetNotificationEventsByIdsRes>> getNotificationEventsByIdsA
   IGetNotificationEventsByIdsReq data,
 ) {
   return httpClient.post<IGetNotificationEventsByIdsRes>(
-    '$baseUrl/api/notification/v1/getEventsByIds',
+    '$baseUrl/beaver/api/notification/event/v1/get_events_by_ids',
     data: data.toJson(),
     fromJsonT: (json) => IGetNotificationEventsByIdsRes(
       events: (json['events'] as List?)
@@ -44,7 +44,7 @@ Future<BaseResponse<IGetNotificationInboxByIdsRes>> getNotificationInboxByIdsApi
   IGetNotificationInboxByIdsReq data,
 ) {
   return httpClient.post<IGetNotificationInboxByIdsRes>(
-    '$baseUrl/api/notification/v1/getInboxByIds',
+    '$baseUrl/beaver/api/notification/inbox/v1/get_inbox_by_ids',
     data: data.toJson(),
     fromJsonT: (json) => IGetNotificationInboxByIdsRes(
       inbox: (json['inbox'] as List?)
@@ -60,7 +60,7 @@ Future<BaseResponse<IGetNotificationReadCursorsRes>> getNotificationReadCursorsA
   IGetNotificationReadCursorsReq data,
 ) {
   return httpClient.post<IGetNotificationReadCursorsRes>(
-    '$baseUrl/api/notification/v1/getReadCursors',
+    '$baseUrl/beaver/api/notification/read/v1/get_read_cursors',
     data: data.toJson(),
     fromJsonT: (json) => IGetNotificationReadCursorsRes(
       cursors: (json['cursors'] as List?)
@@ -76,7 +76,7 @@ Future<BaseResponse<IMarkReadByCategoryRes>> markReadByCategoryApi(
   IMarkReadByCategoryReq data,
 ) {
   return httpClient.post<IMarkReadByCategoryRes>(
-    '$baseUrl/api/notification/v1/markReadByCategory',
+    '$baseUrl/beaver/api/notification/read/v1/mark_read_by_category',
     data: data.toJson(),
     fromJsonT: (json) => IMarkReadByCategoryRes.fromJson(json),
   );

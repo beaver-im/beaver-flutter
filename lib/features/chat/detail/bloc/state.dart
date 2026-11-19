@@ -39,7 +39,6 @@ class ChatState extends Equatable {
   final bool isVoiceMode;
   final bool isSending;
   final Set<String> selectedMessageIds;
-  final MessageModel? editingMessage;
   final MessageModel? replyingMessage;
 
   const ChatState({
@@ -55,7 +54,6 @@ class ChatState extends Equatable {
     this.isVoiceMode = false,
     this.isSending = false,
     this.selectedMessageIds = const {},
-    this.editingMessage,
     this.replyingMessage,
   });
 
@@ -72,9 +70,7 @@ class ChatState extends Equatable {
     bool? isVoiceMode,
     bool? isSending,
     Set<String>? selectedMessageIds,
-    MessageModel? editingMessage,
     MessageModel? replyingMessage,
-    bool clearEditingMessage = false,
     bool clearReplyingMessage = false,
   }) {
     return ChatState(
@@ -90,9 +86,6 @@ class ChatState extends Equatable {
       isVoiceMode: isVoiceMode ?? this.isVoiceMode,
       isSending: isSending ?? this.isSending,
       selectedMessageIds: selectedMessageIds ?? this.selectedMessageIds,
-      editingMessage: clearEditingMessage
-          ? null
-          : (editingMessage ?? this.editingMessage),
       replyingMessage: clearReplyingMessage
           ? null
           : (replyingMessage ?? this.replyingMessage),
@@ -103,6 +96,6 @@ class ChatState extends Equatable {
   List<Object?> get props => [
     status, messages, conversation, conversationId, errorMessage, 
     isLoadingMore, hasMore, draft, activePanel, isVoiceMode, isSending, selectedMessageIds,
-    editingMessage, replyingMessage,
+    replyingMessage,
   ];
 }

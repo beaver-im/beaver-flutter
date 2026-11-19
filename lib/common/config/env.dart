@@ -37,17 +37,17 @@ class EnvConfig {
 const _configs = <Env, EnvConfig>{
   Env.dev: EnvConfig(
     baseUrl: 'http://192.168.3.4:20800',
-    wsUrl: 'ws://192.168.3.4:20800/api/ws/v1/ws',
+    wsUrl: 'ws://192.168.3.4:20800/beaver/api/ws/socket/v1/ws',
     oauthBaseUrl: 'http://192.168.3.4:5173',
   ),
   Env.test: EnvConfig(
-    baseUrl: 'https://server.wsrh8888.com/beaver/',
-    wsUrl: 'wss://server.wsrh8888.com/beaver/api/ws/v1/ws',
+    baseUrl: 'https://server.wsrh8888.com',
+    wsUrl: 'wss://server.wsrh8888.com/beaver/api/ws/socket/v1/ws',
     oauthBaseUrl: 'https://oauth-test.wsrh8888.com',
   ),
   Env.prod: EnvConfig(
-    baseUrl: 'https://server.wsrh8888.com/beaver/',
-    wsUrl: 'wss://server.wsrh8888.com/beaver/api/ws/v1/ws',
+    baseUrl: 'https://server.wsrh8888.com',
+    wsUrl: 'wss://server.wsrh8888.com/beaver/api/ws/socket/v1/ws',
     oauthBaseUrl: 'https://oauth.wsrh8888.com',
   ),
 };

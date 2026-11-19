@@ -64,9 +64,6 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<CancelMultiSelectEvent>(_onCancelMultiSelect);
     on<ToggleMessageSelectionEvent>(_onToggleSelection);
     on<MessageUpdatedEvent>(_onMessageUpdated);
-    on<StartEditMessageEvent>(_onStartEdit);
-    on<CancelEditMessageEvent>(_onCancelEdit);
-    on<SubmitEditMessageEvent>(_onSubmitEdit);
     on<StartReplyMessageEvent>(_onStartReply);
     on<CancelReplyMessageEvent>(_onCancelReply);
     on<RetrySendMessageEvent>(_onRetrySend);
@@ -298,55 +295,11 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     emit(state.copyWith(selectedMessageIds: selection));
   }
 
-  void _onStartEdit(StartEditMessageEvent event, Emitter<ChatState> emit) {
-    emit(state.copyWith(
-      editingMessage: event.message,
-      draft: event.message.content,
-      activePanel: ComposerPanelType.none,
-      isVoiceMode: false,
-      clearReplyingMessage: true,
-    ));
-  }
-
-  void _onCancelEdit(CancelEditMessageEvent event, Emitter<ChatState> emit) {
-    emit(state.copyWith(draft: '', clearEditingMessage: true));
-  }
-
-  Future<void> _onSubmitEdit(
-    SubmitEditMessageEvent event,
-    Emitter<ChatState> emit,
-  ) async {
-    final editing = state.editingMessage;
-    if (editing == null) return;
-
-    final content = event.content.trim();
-    if (content.isEmpty) return;
-
-    emit(state.copyWith(isSending: true));
-    final err = await _messageBusiness.editMessage(
-      editing.id,
-      editing.conversationId,
-      content,
-    );
-    if (err != null) {
-      emit(state.copyWith(isSending: false, errorMessage: err));
-      return;
-    }
-
-    _syncStoreToState(emit, editing.conversationId);
-    emit(state.copyWith(
-      isSending: false,
-      draft: '',
-      clearEditingMessage: true,
-    ));
-  }
-
   void _onStartReply(StartReplyMessageEvent event, Emitter<ChatState> emit) {
     emit(state.copyWith(
       replyingMessage: event.message,
       activePanel: ComposerPanelType.none,
       isVoiceMode: false,
-      clearEditingMessage: true,
     ));
   }
 
