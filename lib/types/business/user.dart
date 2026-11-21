@@ -21,6 +21,7 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:beaver/core/database/db.dart';
+import 'package:beaver/types/business/user_type.dart';
 
 /// 用户仓库接口
 abstract class UserRepositoryInterface {
@@ -46,6 +47,10 @@ class UserInfo extends Equatable {
   final String? phone;
   final int gender;
 
+  /// 账号类型：1 普通用户 / 2 机器人 / 3 数字伙伴。
+  /// 好友列表按它区分「人」与「机器人」，所以必须一路从本地 users 表带上来。
+  final UserType userType;
+
   const UserInfo({
     required this.userId,
     required this.nickname,
@@ -54,7 +59,10 @@ class UserInfo extends Equatable {
     this.email,
     this.phone,
     this.gender = 0,
+    this.userType = UserType.normal,
   });
+
+  bool get isHuman => userType == UserType.normal;
 
   @override
   List<Object?> get props => [
@@ -65,6 +73,7 @@ class UserInfo extends Equatable {
     email,
     phone,
     gender,
+    userType,
   ];
 
 
@@ -77,6 +86,7 @@ class UserInfo extends Equatable {
       email: map['email'],
       phone: map['phone'],
       gender: map['gender'] ?? 0,
+      userType: UserType.fromValue(map['userType'] as int?),
     );
   }
 
@@ -89,6 +99,7 @@ class UserInfo extends Equatable {
       'email': email,
       'phone': phone,
       'gender': gender,
+      'userType': userType.value,
     };
   }
 
@@ -100,6 +111,7 @@ class UserInfo extends Equatable {
     String? email,
     String? phone,
     int? gender,
+    UserType? userType,
   }) {
     return UserInfo(
       userId: userId ?? this.userId,
@@ -109,6 +121,7 @@ class UserInfo extends Equatable {
       email: email ?? this.email,
       phone: phone ?? this.phone,
       gender: gender ?? this.gender,
+      userType: userType ?? this.userType,
     );
   }
 }

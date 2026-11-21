@@ -25,6 +25,8 @@ enum ContactListStatus { initial, loading, success, error }
 
 class ContactListState {
   final ContactListStatus status;
+
+  /// 好友列表：只含人。机器人 / 数字伙伴走「机器人」入口，不混在这里。
   final List<ContactModel> contacts;
   final Map<String, List<ContactModel>> groupedContacts;
   final List<String> indexList;
@@ -32,6 +34,9 @@ class ContactListState {
   final String currentIndex;
   final int friendRequestCount;
   final int groupNotificationCount;
+
+  /// 非人类账号数量（机器人 + 数字伙伴），用于「机器人」入口的计数。
+  final int nonHumanCount;
 
   const ContactListState({
     this.status = ContactListStatus.initial,
@@ -42,6 +47,7 @@ class ContactListState {
     this.currentIndex = '',
     this.friendRequestCount = 0,
     this.groupNotificationCount = 0,
+    this.nonHumanCount = 0,
   });
 
   ContactListState copyWith({
@@ -53,6 +59,7 @@ class ContactListState {
     String? currentIndex,
     int? friendRequestCount,
     int? groupNotificationCount,
+    int? nonHumanCount,
   }) {
     return ContactListState(
       status: status ?? this.status,
@@ -63,6 +70,7 @@ class ContactListState {
       currentIndex: currentIndex ?? this.currentIndex,
       friendRequestCount: friendRequestCount ?? this.friendRequestCount,
       groupNotificationCount: groupNotificationCount ?? this.groupNotificationCount,
+      nonHumanCount: nonHumanCount ?? this.nonHumanCount,
     );
   }
 }

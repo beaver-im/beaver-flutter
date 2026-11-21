@@ -23,6 +23,7 @@ import 'package:go_router/go_router.dart';
 import 'package:beaver/features/contact/list/list.dart';
 import 'package:beaver/features/contact/detail/detail.dart';
 import 'package:beaver/features/contact/new_friends/new_friends.dart';
+import 'package:beaver/features/contact/robots/robots.dart';
 import 'package:beaver/features/contact/search/search.dart';
 import 'package:beaver/features/contact/add/add.dart';
 import 'package:beaver/router/routes.dart';
@@ -50,6 +51,10 @@ List<GoRoute> contactRoutes() {
     GoRoute(
       path: AppRoutes.newFriends,
       builder: (context, state) => const NewFriendsPage(),
+    ),
+    GoRoute(
+      path: AppRoutes.robotList,
+      builder: (context, state) => const RobotListPage(),
     ),
   ];
 }

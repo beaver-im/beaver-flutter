@@ -83,10 +83,13 @@ class ContactListBloc extends Bloc<ContactListEvent, ContactListState> {
     Emitter<ContactListState> emit,
   ) async {
     // 遵循规范：从 Global Store 获取已组装好的数据
-    final contacts = _friendStore.state.friends;
+    final allFriends = _friendStore.state.friends;
+    // 「好友」列表只放人。机器人 / 数字伙伴归「机器人」入口，不混进字母分组。
+    final contacts = getIt<FriendBusiness>().getHumanFriends(allFriends);
+    final nonHumanCount = allFriends.length - contacts.length;
     _logger.info({
       'text': '加载联系人列表',
-      'data': {'本地好友数': contacts.length},
+      'data': {'本地好友数': allFriends.length, '人数': contacts.length, '非人类': nonHumanCount},
     });
     final currentUserId = getIt<UserStore>().state.currentUserId;
 
@@ -114,6 +117,7 @@ class ContactListBloc extends Bloc<ContactListEvent, ContactListState> {
         indexList: indexList,
         friendRequestCount: friendCount,
         groupNotificationCount: groupCount,
+        nonHumanCount: nonHumanCount,
       ),
     );
     _logger.info({

@@ -153,6 +153,13 @@ class _ContactListViewState extends State<ContactListView> {
           title: '群聊',
           icon: 'assets/icons/friend/group-chat.svg',
           route: AppRoutes.groupList,
+        ),
+        // 机器人与数字伙伴不混在下面的好友列表里，统一走这个入口。
+        _buildActionRow(
+          title: '机器人',
+          icon: 'assets/icons/friend/ai-assistant.svg',
+          route: AppRoutes.robotList,
+          trailingText: state.nonHumanCount > 0 ? '${state.nonHumanCount}' : null,
           showDivider: false,
         ),
       ],
@@ -164,6 +171,7 @@ class _ContactListViewState extends State<ContactListView> {
     required String icon,
     required String route,
     int badgeCount = 0,
+    String? trailingText,
     bool showDivider = true,
   }) {
     return Column(
@@ -223,6 +231,17 @@ class _ContactListViewState extends State<ContactListView> {
                           color: Colors.white,
                           fontSize: 11.sp,
                           fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  if (trailingText != null)
+                    Padding(
+                      padding: EdgeInsets.only(right: 8.w),
+                      child: Text(
+                        trailingText,
+                        style: TextStyle(
+                          fontSize: 13.sp,
+                          color: const Color(0xFFB2BEC3),
                         ),
                       ),
                     ),

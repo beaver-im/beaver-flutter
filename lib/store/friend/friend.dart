@@ -126,6 +126,10 @@ class FriendStore extends Cubit<FriendStoreState> {
         avatar: userInfo?.avatar ?? friend.avatar,
         // 这里的 notice 指指的是备注 (由 FriendBusiness 从数据库拉回)
         notice: friend.notice,
+        // 账号类型同样以全局用户资料为准：好友关系刚建立时本地 users 表可能
+        // 还没有对方记录，getContactList 只能按「人」兜底；等 user_sync 落库后
+        // 必须在这里纠正过来，否则机器人会一直留在「好友」列表里。
+        userType: userInfo?.userType ?? friend.userType,
       );
 
       return finalModel;

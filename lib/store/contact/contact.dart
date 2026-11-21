@@ -114,6 +114,7 @@ class ContactStore extends Cubit<ContactStoreState> {
             ? contactInfo.phone
             : existing.phone,
         gender: contactInfo.gender != 0 ? contactInfo.gender : existing.gender,
+        userType: contactInfo.userType,
       );
 
       if (merged != existing || force) {

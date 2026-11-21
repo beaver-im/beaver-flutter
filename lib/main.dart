@@ -24,6 +24,7 @@ import 'dart:io';
 import 'dart:ui' show PlatformDispatcher;
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show FlutterError, FlutterErrorDetails;
+import 'package:flutter/services.dart' show DeviceOrientation, SystemChrome;
 import 'package:beaver/app/app.dart';
 import 'package:beaver/core/database/database.dart';
 import 'package:beaver/common/websocket/ws_connection_manager.dart';
@@ -42,6 +43,9 @@ void main() async {
   // binding 初始化与 runApp 必须在同一个 zone，否则 Flutter 3.13+ 报 Zone mismatch
   runZonedGuarded<void>(() async {
     WidgetsFlutterBinding.ensureInitialized();
+
+    // 手机锁竖屏；平板（最短边 >= 600dp）允许横竖屏
+    await _configureOrientation();
 
     // 1. 初始化日志
     await Logger.init();
@@ -121,5 +125,24 @@ void main() async {
     },
   });
 });
+}
+
+/// 手机锁定竖屏；平板（最短边 >= 600dp，Android sw600dp / iPad 标准）允许四个方向。
+Future<void> _configureOrientation() async {
+  final view = PlatformDispatcher.instance.views.first;
+  final size = view.physicalSize;
+  final shortestSide = size.width < size.height ? size.width : size.height;
+  final isTablet = shortestSide / view.devicePixelRatio >= 600;
+
+  await SystemChrome.setPreferredOrientations(
+    isTablet
+        ? const [
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+            DeviceOrientation.landscapeLeft,
+            DeviceOrientation.landscapeRight,
+          ]
+        : const [DeviceOrientation.portraitUp],
+  );
 }
 

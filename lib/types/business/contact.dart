@@ -20,6 +20,7 @@
  */
 
 import 'package:equatable/equatable.dart';
+import 'package:beaver/types/business/user_type.dart';
 
 /// 好友仓库接口
 abstract class FriendRepositoryInterface {
@@ -63,16 +64,23 @@ class ContactModel extends Equatable {
   final String? avatar;
   final String? fileName;
 
+  /// 账号类型：1 普通用户 / 2 机器人 / 3 数字伙伴。
+  /// 通讯录用它把「人」和「机器人」分开，「好友」列表只放人。
+  final UserType userType;
+
   const ContactModel({
     required this.userId,
     required this.nickname,
     this.notice,
     this.avatar,
     this.fileName,
+    this.userType = UserType.normal,
   });
 
+  bool get isHuman => userType == UserType.normal;
+
   @override
-  List<Object?> get props => [userId, nickname, notice, avatar, fileName];
+  List<Object?> get props => [userId, nickname, notice, avatar, fileName, userType];
 
   ContactModel copyWith({
     String? userId,
@@ -80,6 +88,7 @@ class ContactModel extends Equatable {
     String? notice,
     String? avatar,
     String? fileName,
+    UserType? userType,
   }) {
     return ContactModel(
       userId: userId ?? this.userId,
@@ -87,6 +96,7 @@ class ContactModel extends Equatable {
       notice: notice ?? this.notice,
       avatar: avatar ?? this.avatar,
       fileName: fileName ?? this.fileName,
+      userType: userType ?? this.userType,
     );
   }
 }

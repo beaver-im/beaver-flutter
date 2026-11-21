@@ -28,6 +28,7 @@ import 'package:beaver/di/injection.dart';
 import 'package:intl/intl.dart';
 import 'package:beaver/types/api/friend.dart';
 import 'package:beaver/types/business/contact.dart';
+import 'package:beaver/types/business/user_type.dart';
 import 'package:beaver/common/logger/index.dart';
 
 final _logger = Logger('friend-business');
@@ -35,6 +36,7 @@ final _logger = Logger('friend-business');
 /// 好友业务逻辑
 class FriendBusiness implements FriendRepositoryInterface {
   final _service = getIt<FriendService>();
+  final _userBusiness = getIt<UserBusiness>();
   final _friendUpdateController = StreamController<List<String>>.broadcast();
   final Map<String, int> _lastHandledVersionByFriendId = {};
 
@@ -57,6 +59,17 @@ class FriendBusiness implements FriendRepositoryInterface {
     final friends = await _service.getFriends();
     if (friends.isEmpty) return [];
 
+    // ContactModel 是业务层的产出物，昵称/头像在这里就要带全，不留给上层异步回填。
+    // 资料源头是本地 users 表：服务端建立好友关系时会推 users 版本更新，
+    // 由 UserBusiness 落库；这里只读本地，不做任何补偿拉取。
+    final peerIds = friends
+        .map((f) => f.sendUserId == myUserId ? f.revUserId : f.sendUserId)
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList();
+    final userInfos = await _userBusiness.getUsersBasicInfo(peerIds);
+    final userMap = {for (final u in userInfos) u.userId: u};
+
     final results = friends.map((friend) {
       // 确定好友的用户ID
       final friendUserId = friend.sendUserId == myUserId
@@ -68,15 +81,32 @@ class FriendBusiness implements FriendRepositoryInterface {
           ? friend.sendUserNotice
           : friend.revUserNotice;
 
+      final user = userMap[friendUserId];
       return ContactModel(
         userId: friendUserId,
-        nickname: '', // Store will resolve this from ContactStore
+        nickname: user?.nickname ?? '',
         notice: notice,
-        avatar: '', // Store will resolve this from ContactStore
+        avatar: user?.avatar ?? '',
+        userType: user?.userType ?? UserType.normal,
       );
     }).toList();
 
     return results;
+  }
+
+  /**
+   * @description 好友列表（只放人）。机器人 / 数字伙伴归「机器人」入口，不混在好友里。
+   */
+  List<ContactModel> getHumanFriends(List<ContactModel> contacts) {
+    return contacts.where((c) => c.isHuman).toList();
+  }
+
+  /**
+   * @description 非人类账号（机器人 + 数字伙伴）。平铺展示，不分段，
+   * 具体是机器人还是数字伙伴由行内标签区分。
+   */
+  List<ContactModel> getNonHumanFriends(List<ContactModel> contacts) {
+    return contacts.where((c) => !c.isHuman).toList();
   }
 
   /**

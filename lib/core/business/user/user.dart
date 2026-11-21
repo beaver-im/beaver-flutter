@@ -29,6 +29,7 @@ import 'package:beaver/types/api/auth.dart';
 import 'package:beaver/types/api/user.dart';
 import 'package:beaver/types/api/datasync.dart';
 import 'package:beaver/types/business/user.dart';
+import 'package:beaver/types/business/user_type.dart';
 import 'package:beaver/shared/utils/storage_util.dart';
 import 'package:beaver/common/logger/index.dart';
 
@@ -84,6 +85,7 @@ class UserBusiness implements UserRepositoryInterface {
       email: dbUser.email,
       phone: dbUser.phone,
       gender: dbUser.gender ?? 0,
+      userType: UserType.fromValue(dbUser.userType),
     );
   }
 
@@ -201,6 +203,7 @@ class UserBusiness implements UserRepositoryInterface {
             email: u['email'] ?? '',
             phone: u['phone'] ?? '',
             gender: u['gender'] ?? 0,
+            userType: UserType.fromValue(u['userType'] as int?),
           ),
         )
         .toList();
@@ -217,6 +220,7 @@ class UserBusiness implements UserRepositoryInterface {
             userId: u['userId'],
             nickname: u['nickName'] ?? '',
             avatar: u['avatar'] ?? '',
+            userType: UserType.fromValue(u['userType'] as int?),
           ),
         )
         .toList();
